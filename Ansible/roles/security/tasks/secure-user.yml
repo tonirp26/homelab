@@ -1,0 +1,13 @@
+---
+- name: Create a user for Ansible user with a home directory
+  user:
+    name: "{{ user_name }}"
+    groups: "{{ user_groups }}"
+    append: true
+    create_home: true
+
+- name: Adds an SSH key for the new Ansible user
+  authorized_key:
+    user: "{{ user_name }}"
+    state: present
+    key: "{{ user_ssh_key }}"

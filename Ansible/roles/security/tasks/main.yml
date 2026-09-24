@@ -1,0 +1,18 @@
+---
+- name: Include OS-specific variables.
+  include_vars: Debian.yml
+
+# Secure user for ansible
+- include_tasks: secure-user.yml
+
+# Fail2Ban
+- include_tasks: fail2ban.yml
+  when: security_fail2ban_enabled | bool
+
+# SSH
+- include_tasks: ssh.yml
+
+# Autoupdate
+- include_tasks: autoupdate-Debian.yml
+  when:
+    - security_autoupdate_enabled | bool
