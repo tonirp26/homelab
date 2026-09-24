@@ -1,0 +1,18 @@
+---
+- name: Check if ufw package is installed (on Debian).
+  command: service ufw status
+  register: ufw_installed
+  ignore_errors: true
+  changed_when: false
+  when:
+    - firewall_disable_ufw
+  check_mode: false
+
+- name: Disable the ufw firewall (on Ubuntu, if configured).
+  service:
+    name: ufw
+    state: stopped
+    enabled: false
+  when:
+    - firewall_disable_ufw
+    - ufw_installed.rc == 0
