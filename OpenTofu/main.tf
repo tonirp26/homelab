@@ -1,8 +1,8 @@
-resource "proxmox_virtual_environment_container" "ubuntu" {
+resource "proxmox_virtual_environment_container" "uptime_kuma" {
   description = "Managed by OpenTofu"
 
   node_name = "yharnam"
-  vm_id     = 251
+  vm_id     = 250
 
   tags = [
     "analytics",
@@ -24,8 +24,8 @@ resource "proxmox_virtual_environment_container" "ubuntu" {
   }
 
   operating_system {
-    template_file_id = "local:vztmpl/ubuntu-22.04-standard_22.04-1_amd64.tar.zst"
-    type             = "ubuntu"
+    template_file_id = "local:vztmpl/debian-13-standard_13.1-2_amd64.tar.zst"
+    type             = "debian"
   }
 
   unprivileged = true
@@ -40,11 +40,11 @@ resource "proxmox_virtual_environment_container" "ubuntu" {
   #protection = true
 
   initialization {
-    hostname = "ubuntu"
+    hostname = "uptime-kuma"
 
     ip_config {
       ipv4 {
-        address = "${var.ubuntu_ip}/24"
+        address = "${var.uptime_kuma_ip}/24"
         gateway = var.gateway
       }
     }
