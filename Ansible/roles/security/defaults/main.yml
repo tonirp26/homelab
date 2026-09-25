@@ -31,5 +31,4 @@ security_fail2ban_custom_configuration_template: "jail.local.j2"
 # User configuration
 user_name: ansible
 user_shell: /bin/bash
-user_ssh_key: "{{ lookup('file', './ssh_key') }}"
-user_groups: []
+user_ssh_key: "{{ lookup('file', '../ssh_key') }}"

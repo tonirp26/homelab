@@ -4,6 +4,9 @@
     name: "{{ security_sshd_name }}"
     state: "{{ security_sshd_state }}"
 
+- name: Ensure sudo is present
+  apt: name=sudo state=present
+
 - name: Update SSH configuration to be more secure.
   lineinfile:
     dest: "{{ security_ssh_config_path }}"
