@@ -12,5 +12,5 @@
   roles:
     - security
     - firewall
-    - ansible-role-nodejs
+    - geerlingguy.nodejs
     - uptime-kuma

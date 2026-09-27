@@ -1,4 +1,12 @@
 ---
 roles:
   - name: geerlingguy.nodejs
-  
+
+  - name: security
+    src: git+https://github.com/tonirp26/ansible-role-security.git
+
+  - name: firewall
+    src: git+https://github.com/tonirp26/ansible-role-firewall.git
+
+  - name: uptime-kuma
+    src: git+https://github.com/tonirp26/ansible-role-uptime-kuma.git
