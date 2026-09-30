@@ -1,13 +1,10 @@
-resource "proxmox_virtual_environment_container" "ubuntu" {
+resource "proxmox_virtual_environment_container" "uptime_kuma" {
   description = "Managed by OpenTofu"
 
   node_name = "yharnam"
-  vm_id     = 251
-
-  tags = [
-    "analytics",
-    "monitoring",
-  ]
+  vm_id     = var.uptime_kuma_id
+  tags = ["analytics","monitoring"]
+  unprivileged = true
 
   cpu {
     cores = 1
@@ -24,11 +21,10 @@ resource "proxmox_virtual_environment_container" "ubuntu" {
   }
 
   operating_system {
-    template_file_id = "local:vztmpl/ubuntu-24.04-standard_24.04-2_amd64.tar.zst"
-    type             = "ubuntu"
+    template_file_id = "local:vztmpl/debian-13-standard_13.1-2_amd64.tar.zst"
+    type             = "debian"
   }
 
-  unprivileged = true
 
   features {
     nesting = true
@@ -40,18 +36,18 @@ resource "proxmox_virtual_environment_container" "ubuntu" {
   #protection = true
 
   initialization {
-    hostname = "uptime-kuma"
+    hostname = var.uptime_kuma_hostname
 
     ip_config {
       ipv4 {
-        address = "${var.ubuntu_ip}/24"
+        address = "${var.uptime_kuma_ip}/24"
         gateway = var.gateway
       }
     }
 
     user_account {
       keys = [
-        file("../../.ssh/homelab.pub")
+        file("../.ssh/homelab.pub")
       ]
     }
   }
