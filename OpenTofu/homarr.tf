@@ -1,34 +1,29 @@
-resource "proxmox_virtual_environment_container" "uptime_kuma" {
+resource "proxmox_virtual_environment_container" "homarr" {
   description = "Managed by OpenTofu"
 
   node_name = "yharnam"
-  vm_id     = 250
-
-  tags = [
-    "analytics",
-    "monitoring",
-  ]
+  vm_id     = var.homarr_id
+  tags = ["dashboard","arr"]
+  unprivileged = true
 
   cpu {
-    cores = 1
+    cores = 2
   }
 
   memory {
-    dedicated = 1024
+    dedicated = 2048
     swap      = 512
   }
 
   disk {
     datastore_id = "local-lvm"
-    size         = 4
+    size         = 8
   }
 
   operating_system {
     template_file_id = "local:vztmpl/debian-13-standard_13.1-2_amd64.tar.zst"
     type             = "debian"
   }
-
-  unprivileged = true
 
   features {
     nesting = true
@@ -40,11 +35,11 @@ resource "proxmox_virtual_environment_container" "uptime_kuma" {
   #protection = true
 
   initialization {
-    hostname = "uptime-kuma"
+    hostname = var.homarr_hostname
 
     ip_config {
       ipv4 {
-        address = "${var.uptime_kuma_ip}/24"
+        address = "${var.homarr_ip}/24"
         gateway = var.gateway
       }
     }
@@ -60,12 +55,11 @@ resource "proxmox_virtual_environment_container" "uptime_kuma" {
     name     = "eth0"
     bridge   = "vmbr0"
 
-
     firewall = true
   }
 
   startup {
-    order      = "3"
+    order      = "-1"
     up_delay   = "60"
     down_delay = "60"
   }
