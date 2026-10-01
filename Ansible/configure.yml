@@ -1,0 +1,4 @@
+---
+- import_playbook: playbooks/security/main.yml
+- import_playbook: playbooks/uptime-kuma/main.yml
+- import_playbook: playbooks/homarr/main.yml

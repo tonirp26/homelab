@@ -1,16 +1,15 @@
 ---
-- hosts: all
+- hosts: uptime_kuma
   become: true
 
   vars_files:
-    - vars/main.yml
+    - vars.yml
 
   pre_tasks:
     - name: update apt cache if needed.
       apt: update_cache=yes cache_valid_time=3600
 
   roles:
-    - security
     - firewall
     - geerlingguy.nodejs
     - uptime-kuma
