@@ -3,12 +3,13 @@
   remote_user: root
   become: true
 
-  vars:
-    ansible_user: root
-    ansible_private_key_file: "../.ssh/homelab"
+  # vars:
+  #   ansible_user: root
+  #   ansible_private_key_file: "../.ssh/homelab"
 
   vars_files:
     - vars.yml
+    - ../../vault.yml
 
   pre_tasks:
     - name: update apt cache if needed.

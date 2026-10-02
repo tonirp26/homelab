@@ -10,3 +10,6 @@ roles:
 
   - name: uptime-kuma
     src: git+https://github.com/tonirp26/ansible-role-uptime-kuma.git
+  
+  - name: homarr
+    src: git+https://github.com/tonirp26/ansible-role-homarr
