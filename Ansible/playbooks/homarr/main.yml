@@ -4,6 +4,7 @@
 
   vars_files:
     - vars.yml
+    - - ../../vault.yml
 
   pre_tasks:
     - name: update apt cache if needed.

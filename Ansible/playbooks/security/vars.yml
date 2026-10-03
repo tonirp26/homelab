@@ -1,0 +1,10 @@
+---
+# Lady Maria user
+user_name: "{{ security_user_name }}"
+user_ssh_key: "{{ lookup('file', '../../../.ssh/{{ security_user_name }}.pub') }}"
+
+# Security configuration
+security_ssh_allowed_users: 
+  - "{{ security_user_name }}"
+security_sudoers_passwordless: 
+  - "{{ security_user_name }}"

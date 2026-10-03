@@ -1,0 +1,9 @@
+---
+# firewall configuration
+firewall_allowed_tcp_ports:
+  - 22
+  - 443
+  - 7575
+
+# nodejs 
+nodejs_version: "24.x"
