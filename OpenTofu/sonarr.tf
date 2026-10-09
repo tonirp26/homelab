@@ -11,7 +11,7 @@ resource "proxmox_virtual_environment_container" "sonarr" {
   }
 
   memory {
-    dedicated = 2048
+    dedicated = 1024
     swap      = 512
   }
 
@@ -19,12 +19,6 @@ resource "proxmox_virtual_environment_container" "sonarr" {
     datastore_id = "local-lvm"
     size         = 4
   }
-
-  # Proxmox only allow create mount points with root user.
-  # mount_point{
-  #   volume = "/amygdala/data"
-  #   path = "/mnt/data"
-  # }
 
   operating_system {
     template_file_id = "local:vztmpl/debian-13-standard_13.1-2_amd64.tar.zst"

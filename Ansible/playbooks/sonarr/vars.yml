@@ -1,0 +1,6 @@
+---
+# firewall configuration
+firewall_allowed_tcp_ports:
+  - 22
+  - 443
+  - 8989
