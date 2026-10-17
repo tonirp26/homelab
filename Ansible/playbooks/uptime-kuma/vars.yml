@@ -1,9 +1,16 @@
 ---
-# firewall configuration
+# Firewall configuration
 firewall_allowed_tcp_ports:
   - 22
   - 443
   - 3001
 
-# nodejs 
+# NodeJS 
 nodejs_version: "22.x"
+
+# Uptime Kuma
+uptime_kuma_db_type: sqlite
+
+uptime_kuma_admin_username: "{{ vault_uptime_kuma_admin_username }}"
+
+uptime_kuma_monitors: "{{ vault_uptime_kuma_monitors }}"
